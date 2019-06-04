@@ -1,0 +1,41 @@
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+
+<script>
+    // Initialize Firebase
+    // TODO: Replace with your project's customized code snippet
+    let config = {
+        apiKey: "AIzaSyAJJmBqswnhfuUqcsCzKNO0cepLwtM21Fs",
+        authDomain: "lebaran-98c3a.firebaseapp.com",
+        databaseURL: "https://lebaran-98c3a.firebaseio.com",
+        storageBucket: "bucket.appspot.com",
+        projectId: "lebaran-98c3a",
+    };
+    if (!firebase.apps.length) {
+        console.log("config success");
+        firebase.initializeApp(config);
+    }
+
+    var db = firebase.firestore()
+
+    function writeGreet(name, messages) {
+
+        db.collection("greets").add({
+            name: name,
+            messages: messages
+        }).then(function (docRef) {
+            console.log("Document written with ID: ", docRef.id);
+        })
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            });
+    }
+    db.collection("greets").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(doc.data());
+        });
+    });
+
+    writeGreet("test", "mufti")
+
+</script>
