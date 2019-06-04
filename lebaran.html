@@ -53,9 +53,12 @@
     <h1>Selamat Hari Raya Idul Fitri 1440 H ges</h1><br><br>
     <h2>Mufti minta maap klo ada salah</h2>
     <p>Ini ada form silakan bisa diisi kritik, saran, atau apapun buat aku</p><br><br>
+
     <input class="form-lebaran" type="text" id="name" required placeholder="isi namamu disini ges"><br><br>
-    <input class="form-lebaran larger" type="text" id="messages" required placeholder="isi pesan atau apapun disini ges"><br><br>
+    <input class="form-lebaran larger" type="text" id="messages" required
+        placeholder="isi pesan atau apapun disini ges"><br><br>
     <button class="btn-lebaran" onclick="send()">kirim</button>
+
 </body>
 
 </html>
@@ -98,6 +101,8 @@
         messages = document.getElementById("messages").value
         writeGreet(name, messages)
         window.location.href = "https://mufti1.github.io/list-messages"
+
+
     }
 
 </script>
