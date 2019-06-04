@@ -47,15 +47,21 @@
         color: white;
         width: 100px;
     }
+    .name {
+        font-size: 10px;
+    }
 </style>
 
 <body style="text-align: center">
+    <a href="https://mufti1.github.io/lebaran">Back To yang tadi</a>
     <h1>Selamat Hari Raya Idul Fitri 1440 H ges</h1><br><br>
-    <h2>Mufti minta maap klo ada salah</h2>
-    <p>Ini ada form silakan bisa diisi kritik, saran, atau apapun buat aku</p><br><br>
-    <input class="form-lebaran" type="text" id="name" required placeholder="isi namamu disini ges"><br><br>
-    <input class="form-lebaran larger" type="text" id="messages" required placeholder="isi pesan atau apapun disini ges"><br><br>
-    <button class="btn-lebaran" onclick="send()">kirim</button>
+   <p>so niatnya si aku pengen bikin ucapan kalian itu muncul kek animasi gitu </p>
+   <p>nah tapi berhubung aku pusing cara bikinya, dah lama ga nyentuh pron en euy</p>
+   <p>jadi kutampilin ada apanya disini ajah</p>
+   <p style="text-align: left">nih Listnyah: </p>
+   <div id="container" style="text-align: left">
+        
+   </div>
 </body>
 
 </html>
@@ -80,24 +86,16 @@
     }
 
     var db = firebase.firestore()
+    var container = document.getElementById("container");
+    db.collection("greets").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(doc.data());
+            const greets = doc.data();
 
-    function writeGreet(name, messages) {
-        db.collection("greets").add({
-            name: name,
-            messages: messages
-        }).then(function (docRef) {
-            console.log("Document written with ID: ", docRef.id);
-        })
-            .catch(function (error) {
-                console.error("Error adding document: ", error);
-            });
-    }
-
-    function send() {
-        name = document.getElementById("name").value
-        messages = document.getElementById("messages").value
-        writeGreet(name, messages)
-        window.location.href = "https://mufti1.github.io/list-messages"
-    }
-
-</script>
+            var div = document.createElement("div");
+            div.innerHTML = "<p>"+greets.messages+"</p><p class='name'>"+greets.name+"</p><br>";
+            container.appendChild(div)
+        });
+    });
+    
+</script> 
